@@ -5,6 +5,10 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/")
+def home():
+    return "Eco Travel Backend is running"
+
 @app.route("/routes", methods=["POST"])
 def routes():
     return jsonify({
@@ -17,4 +21,9 @@ def routes():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(
+        host="0.0.0.0",
+        port=port,
+        debug=False,
+        use_reloader=False
+    )
